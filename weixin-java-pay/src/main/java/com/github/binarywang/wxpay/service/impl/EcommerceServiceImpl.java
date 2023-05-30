@@ -179,7 +179,9 @@ public class EcommerceServiceImpl implements EcommerceService {
 
   @Override
   public FundBalanceResult subNowBalance(String subMchid) throws WxPayException {
-    return subNowBalance(subMchid, null);
+    String url = String.format("%s/v3/ecommerce/fund/balance/%s", this.payService.getPayBaseUrl(), subMchid);
+    String response = this.payService.getV3(url);
+    return GSON.fromJson(response, FundBalanceResult.class);
   }
 
   @Override
