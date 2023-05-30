@@ -80,7 +80,7 @@
 <dependency>
   <groupId>com.github.binarywang</groupId>
   <artifactId>（不同模块参考下文）</artifactId>
-  <version>dcz-4.5.1</version>
+  <version>dcz-4.5-SNAPSHOT</version>
 </dependency>
 ```
 
