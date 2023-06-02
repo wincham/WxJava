@@ -179,7 +179,19 @@ public class EcommerceServiceImpl implements EcommerceService {
 
   @Override
   public FundBalanceResult subNowBalance(String subMchid) throws WxPayException {
-    return subNowBalance(subMchid, null);
+    String url = String.format("%s/v3/ecommerce/fund/balance/%s", this.payService.getPayBaseUrl(), subMchid);
+    String response = this.payService.getV3(url);
+    return GSON.fromJson(response, FundBalanceResult.class);
+  }
+
+  @Override
+  public FundBalanceResult subNowBalance(String subMchid, SpAccountTypeEnum accountType) throws WxPayException {
+    String url = String.format("%s/v3/ecommerce/fund/balance/%s", this.payService.getPayBaseUrl(), subMchid);
+    if (Objects.nonNull(accountType)) {
+      url += "?account_type=" + accountType.getValue();
+    }
+    String response = this.payService.getV3(url);
+    return GSON.fromJson(response, FundBalanceResult.class);
   }
 
   @Override
